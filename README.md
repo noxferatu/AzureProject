@@ -1,5 +1,5 @@
-# AzureProject
-Azure project with Docker and Ansible
+<!-- # AzureProject -->
+<!-- Azure project with Docker and Ansible -->
 
 ## Automated ELK Stack Deployment
 
