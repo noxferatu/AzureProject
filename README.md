@@ -28,49 +28,52 @@ This document contains the following details:
 The main purpose of this network is to expose a load-balanced and monitored instance of DVWA, the D*mn Vulnerable Web Application.
 
 Load balancing ensures that the application will be highly available, in addition to restricting access to the network.
-- _TODO: What aspect of security do load balancers protect? What is the advantage of a jump box?_
+- Load balancers increase reliability, uptime and access, while preventing DDOS attacks. They can manage health checks to report when a server is down and switch between redundant servers.
+- A "Jump box" will allow an external connection through which an external device can connect to resources inside the network that do not allow external access. They can also run software (such as an Ansible Docker Container) to control/configure parts of the network.  
 
-Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the _____ and system _____.
-- _TODO: What does Filebeat watch for?_
-- _TODO: What does Metricbeat record?_
+Integrating an ELK server allows users to easily monitor the vulnerable VMs for changes to the traffic and system logs.
+- Filebeat monitors system logs and files
+- Metricbeat will collet metrics from the server's operating system and services 
 
 The configuration details of each machine may be found below.
 _Note: Use the [Markdown Table Generator](http://www.tablesgenerator.com/markdown_tables) to add/remove values from the table_.
 
-| Name     | Function | IP Address | Operating System |
-|----------|----------|------------|------------------|
-| Jump Box | Gateway  | 10.0.0.1   | Linux            |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
-| TODO     |          |            |                  |
+| Name      | Function | IP Address | Operating System |
+|-----------|----------|------------|------------------|
+| Jump Box  | Gateway  | 10.0.0.4   | Ubuntu 18.04     |
+| WEB-1     | Webserver| 10.0.0.5   | Ubuntu 18.04     |
+| WEB-2     | Webserver| 10.0.0.6   | Ubuntu 18.04     |
+| ELK Server| Monitor  | 10.1.0.4   | Ubuntu 18.04     |
 
 ### Access Policies
 
 The machines on the internal network are not exposed to the public Internet. 
 
-Only the _____ machine can accept connections from the Internet. Access to this machine is only allowed from the following IP addresses:
-- _TODO: Add whitelisted IP addresses_
+Only the Jump Box and KIBANA (ELK SERVER) machines can accept connections from the Internet. Access to these machines is only allowed from the following IP address:
+- 68.203.21.170
 
-Machines within the network can only be accessed by _____.
-- _TODO: Which machine did you allow to access your ELK VM? What was its IP address?_
+Machines within the network can only be accessed by SSH from the Jump Box, peering allows webservers to send data to ELK.
+- Non-peering access is allowed from Jump Box, IP 10.0.0.4 via SSH (Port 22)
 
 A summary of the access policies in place can be found in the table below.
 
-| Name     | Publicly Accessible | Allowed IP Addresses |
-|----------|---------------------|----------------------|
-| Jump Box | Yes/No              | 10.0.0.1 10.0.0.2    |
-|          |                     |                      |
-|          |                     |                      |
+| Name     | Publicly Accessible   | Allowed IP Addresses   |
+|----------|-----------------------|------------------------|
+| Jump Box | Yes                   | 68.203.21.170          |
+| Web-1    | Yes via Load balancer | 68.203.21.170          |
+| Web-2    | Yes via Load balancer | 68.203.21.170          |
+| ELK      | Yes                   | 68.203.21.170          |
 
 ### Elk Configuration
 
 Ansible was used to automate configuration of the ELK machine. No configuration was performed manually, which is advantageous because...
-- _TODO: What is the main advantage of automating configuration with Ansible?_
+- The automation is faster than logging into the server then configuring manually and errors are easier to detect. Also, it can be replayed if server needs to be reinstalled.
 
 The playbook implements the following tasks:
-- _TODO: In 3-5 bullets, explain the steps of the ELK installation play. E.g., install Docker; download image; etc._
-- ...
-- ...
+- Installs and configures docker
+- Adjusts memory settings 
+- Downloads/Installs/Launches ELK
+- Configures Docker container to restart
 
 The following screenshot displays the result of running `docker ps` after successfully configuring the ELK instance.
 
