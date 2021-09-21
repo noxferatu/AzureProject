@@ -99,3 +99,6 @@ SSH into the control node and follow the steps below:
 - **NOTE:** Please update 104.210.46.134 to your ELK server's Public IP address
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
+ - To download the install-elk.yml playbook: `wget https://github.com/noxferatu/AzureProject/blob/main/playbooks/install-elk.yml`
+ - To update the file with your specific configuration: `nano install-elk.yml` and `nano /etc/ansible/hosts/`
+ - To run the playbook: `ansible-playbook install-elk.yml`
