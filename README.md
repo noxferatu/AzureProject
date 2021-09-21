@@ -93,10 +93,10 @@ These Beats allow us to collect the following information from each machine:
 In order to use the playbook, you will need to have an Ansible control node already configured. Assuming you have such a control node provisioned: 
 
 SSH into the control node and follow the steps below:
-- Copy the install-elk.yml file to /etc/ansible/roles/install-elk/tasks/install-elk.yml.
-- Update the /etc/ansible/hosts file to include [elkserver] 104.210.46.134 ansible_python_interpreter=/usr/bin/python3
+- Copy the `install-elk.yml` file to `/etc/ansible/roles/install-elk/tasks/install-elk.yml`
+- Update the `/etc/ansible/hosts` file to include `[elkserver] 104.210.46.134 ansible_python_interpreter=/usr/bin/python3`
 - Run the playbook, and navigate to http://104.210.46.134:5601/app/kibana to check that the installation worked as expected.
-- **NOTE:** Please update 104.210.46.134 to your ELK server's Public IP address
+- **NOTE:** Please update `104.210.46.134` to your ELK server's Public IP address
 
 _As a **Bonus**, provide the specific commands the user will need to run to download the playbook, update the files, etc._
  - To download the install-elk.yml playbook: `wget https://github.com/noxferatu/AzureProject/blob/main/playbooks/install-elk.yml`
